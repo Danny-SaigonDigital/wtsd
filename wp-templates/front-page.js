@@ -34,6 +34,7 @@ export default function Component() {
           <Hero title={'Front Page'} />
           <div className="text-center">
             <p>This page is utilizing the "front-page" WordPress template.</p>
+            <p>alo alo</p>
             <code>wp-templates/front-page.js</code>
           </div>
         </Container>
