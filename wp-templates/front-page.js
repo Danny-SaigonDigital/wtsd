@@ -33,7 +33,7 @@ export default function Component() {
         <Container>
           <Hero title={'Front Page'} />
           <div className="text-center">
-            
+            <p>This page is utilizing the "front-page" WordPress template.</p>
             <code>wp-templates/front-page.js</code>
           </div>
         </Container>
@@ -67,7 +67,6 @@ Component.query = gql`
 `;
 
 Component.variables = () => {
-  console.log(MENUS.PRIMARY_LOCATION)
   return {
     headerLocation: MENUS.PRIMARY_LOCATION,
     footerLocation: MENUS.FOOTER_LOCATION,
