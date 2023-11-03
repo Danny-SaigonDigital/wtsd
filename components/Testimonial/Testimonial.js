@@ -36,7 +36,7 @@ const Testimonial = ({ model }) => {
                 ref={swiperRef}
                 slidesPerView={1}
                 spaceBetween={10}
-                className={'md:p-[15px] px-[5px]'}
+                className={'md:p-[15px] px-[5px] py-8'}
                 onBeforeInit={(swiper) => {
                     swiperRef.current = swiper
                 }}

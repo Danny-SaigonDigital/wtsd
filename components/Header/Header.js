@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Container, NavigationMenu, SkipNavigationLink } from '../../components';
 import styles from './Header.module.scss';
 import logo from '../../assets/images/Logo.png';
-import Image from 'next/image';
+import { BarsOutlined } from '@ant-design/icons'
 let cx = classNames.bind(styles);
 
 export default function Header({
@@ -24,13 +24,13 @@ export default function Header({
             </Link>
           <button
             type="button"
-            className={cx('nav-toggle')}
+            className={cx('nav-toggle text-white text-4xl')}
             onClick={() => setIsNavShown(!isNavShown)}
             aria-label="Toggle navigation"
             aria-controls={cx('primary-navigation')}
             aria-expanded={isNavShown}
           >
-            ☰
+            <BarsOutlined />
           </button>
           <NavigationMenu
             className={cx(['primary-navigation', isNavShown ? 'show' : undefined])}

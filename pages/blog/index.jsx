@@ -38,7 +38,7 @@ Blog.query = gql`
               id
               title
               content
-              acfFields {
+              blogFields {
                 isHighlight
                 blogDetail {
                   overview
