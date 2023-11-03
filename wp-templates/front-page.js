@@ -14,7 +14,6 @@ import { Testimonial } from '../components/Testimonial';
 
 export default function Component() {
 	const { data } = useQuery(Component.query);
-	console.log(data)
 	const { title: siteTitle, description: siteDescription } =
 		data?.generalSettings;
 	const  { hero, locationBlock, serviceBlock, partnerBlock, testimonialBlock } = data?.page?.acfFields
@@ -73,13 +72,13 @@ Component.query = gql`
 			subtitle
 			title
 			services {
-			  description
-			  name
-			  icon {
-				sourceUrl
-				mediaDetails {
-					width
-					height
+				description
+				name
+				icon {
+					sourceUrl
+					mediaDetails {
+						width
+						height
 				}
 			  }
 			}

@@ -59,8 +59,8 @@ const Testimonial = ({ model }) => {
                     }
                 }}
             >
-                {model.testimonials && model.testimonials.map(testimonial => (
-                    <SwiperSlide key={testimonial._id} className='mt-[70px]'>
+                {model.testimonials && model.testimonials.map((testimonial, i) => (
+                    <SwiperSlide key={'testimonial-' + i} className='mt-[70px]'>
                         <div className='bg-white app-shadow rounded-lg lg:p-6 p-4'>
                             <div className='flex flex-col justify-center items-center -translate-y-[90px]'>
                                 <Image src={testimonial.userAvatar?.sourceUrl} height={130} width={130} className='h-[130px] w-[130px] object-cover' alt='' />

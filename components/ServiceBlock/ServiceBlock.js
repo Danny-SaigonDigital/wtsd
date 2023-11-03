@@ -63,8 +63,8 @@ const Services = ({ model, backgroundImage }) => {
                         }
                     }}
                 >
-                    {model.services.map(slide => (
-                        <SwiperSlide key={slide._id} className='overflow-hidden shadow-lg rounded-lg'>
+                    {model.services.map((slide, i) => (
+                        <SwiperSlide key={'service-' + i} className='overflow-hidden shadow-lg rounded-lg'>
                             <div className='bg-white'>
                                 <div className=' mx-4 py-10'>
                                     <div className='p-4 bg-black rounded-lg w-fit overflow-hidden'>

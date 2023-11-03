@@ -24,13 +24,13 @@ export default function Header({
             </Link>
           <button
             type="button"
-            className={cx('nav-toggle text-white text-4xl')}
+            className={cx('nav-toggle')}
             onClick={() => setIsNavShown(!isNavShown)}
             aria-label="Toggle navigation"
             aria-controls={cx('primary-navigation')}
             aria-expanded={isNavShown}
           >
-            <BarsOutlined />
+            <BarsOutlined className='text-white text-4xl' />
           </button>
           <NavigationMenu
             className={cx(['primary-navigation', isNavShown ? 'show' : undefined])}
