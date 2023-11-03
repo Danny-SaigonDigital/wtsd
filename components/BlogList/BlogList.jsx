@@ -27,17 +27,17 @@ const BlogList = ({ posts }) => {
                         }>
                         {((i + 1) % 2 === 0 && (
                             <div className='bg-stone-400 p-0'>
-                                <img className='w-full mb-0' src={post.acfFields.blogDetail?.thumbnail?.sourceUrl} />
+                                <img className='w-full mb-0' src={post.blogFields.blogDetail?.thumbnail?.sourceUrl} />
                             </div>
                         ))}
                         <div className="p-8">
                             <Breadcrumb
                                 className='mb-4'
                                 separator={<span className='text-black text-2xl font-thin'>|</span>}
-                                items={getBreadCrumb(post.acfFields.blogDetail?.tags)}
+                                items={getBreadCrumb(post.blogFields.blogDetail?.tags)}
                             />
                             <h5 className='text-4xl mb-6'>{post.title}</h5>
-                            <p className='text-lg text-[#343434] font-light mb-12'>{post.acfFields.blogDetail?.overview}</p>
+                            <p className='text-lg text-[#343434] font-light mb-12'>{post.blogFields.blogDetail?.overview}</p>
                             <Button type='primary' className='bg-black text-white rounded-full px-8 py-6 flex items-center text-2xl'>Read More</Button>
                         </div>
                     </div>
