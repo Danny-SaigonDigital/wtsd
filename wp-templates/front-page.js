@@ -1,75 +1,118 @@
-import { useQuery, gql } from '@apollo/client';
-import * as MENUS from '../constants/menus';
-import { BlogInfoFragment } from '../fragments/GeneralSettings';
+import { gql, useQuery } from '@apollo/client';
 import {
-  Header,
-  Footer,
-  Main,
-  Container,
-  NavigationMenu,
-  Hero,
-  SEO,
+	Hero,
+	Main,
+	SEO
 } from '../components';
+import { BlogInfoFragment } from '../fragments/GeneralSettings';
+
+import { LocationSlides } from '../components/LocationSlides';
+import { PartnerBlock } from '../components/PartnerBlock';
+import { ServiceBlock } from '../components/ServiceBlock';
+import SubcribeBlock from '../components/SubcribeBlock/SubcribeBlock';
+import { Testimonial } from '../components/Testimonial';
 
 export default function Component() {
-  const { data } = useQuery(Component.query, {
-    variables: Component.variables(),
-  });
+	const { data } = useQuery(Component.query);
 
-  const { title: siteTitle, description: siteDescription } =
-    data?.generalSettings;
-  const primaryMenu = data?.headerMenuItems?.nodes ?? [];
-  const footerMenu = data?.footerMenuItems?.nodes ?? [];
+	const { title: siteTitle, description: siteDescription } =
+		data?.generalSettings;
+	const  { hero, locationBlock, serviceBlock, partnerBlock, testimonialBlock } = data?.page?.acfFields
+	const popularPlaces = ['HCM City', 'Da Lat', 'Da Nang'];
 
-  return (
-    <>
-      <SEO title={siteTitle} description={siteDescription} />
-      <Header
-        title={siteTitle}
-        description={siteDescription}
-        menuItems={primaryMenu}
-      />
-      <Main>
-        <Container>
-          <Hero title={'Front Page'} />
-          <div className="text-center">
-            <p>This page is utilizing the "front-page" WordPress template.</p>
-            <p>alo alo</p>
-            <code>wp-templates/front-page.js</code>
-          </div>
-        </Container>
-      </Main>
-      <Footer title={siteTitle} menuItems={footerMenu} />
-    </>
-  );
+	return (
+		<>
+			<SEO title={siteTitle} description={siteDescription} />
+			<Main>
+				<Hero
+					title={hero.title}
+					textAlign={'start'}
+					subTitle={hero.subTitle}
+					popularPlaces={popularPlaces}
+				/> 
+				<LocationSlides model={locationBlock} />
+				<ServiceBlock model={serviceBlock} />
+				<PartnerBlock model={partnerBlock} />
+				<Testimonial model={testimonialBlock} />
+				<SubcribeBlock title={'Subcribe to get special price'} subtitle={'Dont wanna miss something? subscribe right now and get special promotion and monthly newsletter'} />
+			</Main>
+		</>
+	);
 }
 
 Component.query = gql`
   ${BlogInfoFragment}
-  ${NavigationMenu.fragments.entry}
-  query GetPageData(
-    $headerLocation: MenuLocationEnum
-    $footerLocation: MenuLocationEnum
-  ) {
+  query GetFrontPageData{
     generalSettings {
       ...BlogInfoFragment
     }
-    headerMenuItems: menuItems(where: { location: $headerLocation }) {
-      nodes {
-        ...NavigationMenuItemFragment
-      }
-    }
-    footerMenuItems: menuItems(where: { location: $footerLocation }) {
-      nodes {
-        ...NavigationMenuItemFragment
-      }
-    }
-  }
+	page(id: "/", idType: URI) {
+		title
+		acfFields {
+		  hero {
+			description
+			title
+		  }
+		  locationBlock {
+			title
+			subtitle
+			locations {
+			  country
+			  description
+			  name
+			  thumbnail {
+				sourceUrl
+				mediaDetails {
+					width
+					height
+				}
+			  }
+			}
+		  }
+		  serviceBlock {
+			subtitle
+			title
+			services {
+			  description
+			  name
+			  icon {
+				sourceUrl
+				mediaDetails {
+					width
+					height
+				}
+			  }
+			}
+		  }
+		  partnerBlock {
+			title
+			subtitle
+			image {
+			  	sourceUrl
+				mediaDetails {
+					width
+					height
+				}
+			}
+		  }
+		  testimonialBlock {
+			title
+			subtitle 
+			testimonials {
+				userName
+				userAvatar {
+					sourceUrl
+					mediaDetails {
+						width
+						height
+					}
+				}
+				comment
+				rate
+				userPosition
+			}
+		  }
+		}
+	  }
+  	}
 `;
-
-Component.variables = () => {
-  return {
-    headerLocation: MENUS.PRIMARY_LOCATION,
-    footerLocation: MENUS.FOOTER_LOCATION,
-  };
-};
