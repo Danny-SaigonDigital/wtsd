@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BlogHero } from '../../components/BlogHero';
 import { Container, SEO } from '../../components';
 import { UserOutlined, CalendarOutlined, FolderOpenOutlined, ArrowRightOutlined, FacebookFilled, TwitterCircleFilled, LinkedinFilled, PhoneFilled, MailOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Col, Divider, Form, Image, Input, List, Row, Space } from 'antd';
 import { blogs } from '../../mock/blogs';
 import SubcribeBlock from '../../components/SubcribeBlock/SubcribeBlock';
+import { gql, useQuery } from '@apollo/client';
+import { useRouter } from 'next/router';
 
 const BlogDetail = () => {
     const months = ['January, February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'Octobor', 'November', 'December']
@@ -12,6 +14,11 @@ const BlogDetail = () => {
         const d = new Date();
         return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`
     }
+    const router = useRouter();
+    const { id } = router.query;
+    const { data } = useQuery(BlogDetail.query, { variables: { id }});
+    const content = data?.post.content;
+
     return (
         <>
             <SEO title={'WTSD'} description={''} />
@@ -43,8 +50,7 @@ const BlogDetail = () => {
                 <div className='py-[100px] px-[10px] relative'>
                     <Row gutter={[40, 40]}>
                         <Col lg={16} md={24} sm={24} xs={24}>
-                            <img className='rounded-lg w-full h-auto' alt='' src={'https://img.freepik.com/free-photo/cheonggyecheon-stream-seoul-city_74190-4243.jpg?w=1060&t=st=1698312090~exp=1698312690~hmac=26cfe451aa70b073154a56f3d5b1639d3049783c491533637ae6e6d4ebe47c47'} />
-                            <p className='text-[#343434] text-lg mt-8 font-thin'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                            <div className='font-thin text-lg' dangerouslySetInnerHTML={{ __html: content }} />
                             <div className="flex justify-between mt-12">
                                 <p className='text-lg text-[#343434]'><span className='font-thin'>Tags: </span> Destination, Travel </p>
                                 <div className="flex">
@@ -182,4 +188,11 @@ const BlogDetail = () => {
     );
 };
 
+BlogDetail.query = gql`
+    query getPost($id: ID!) {
+        post(id: $id) {
+        content
+        }
+    }
+`;
 export default BlogDetail;

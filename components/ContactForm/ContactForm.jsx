@@ -2,7 +2,7 @@ import { EnvironmentFilled, MailOutlined, PhoneFilled } from '@ant-design/icons'
 import { Button, Col, Form, Input, Row } from 'antd';
 import React from 'react';
 
-const ContactForm = () => {
+const ContactForm = ({ model }) => {
     return (
         <div className='lg:px-[60px] py-[100px] px-[20px]'>
             <Row gutter={[20, 20]}>
@@ -27,12 +27,12 @@ const ContactForm = () => {
                 </Col>
                 <Col lg={16} md={24} sm={24} xs={24}>
                     <div className='lg:px-12 py-8 px-4'>
-                        <h3 className='text-6xl mb-4'>Get In Touch</h3>
-                        <p className='text-lg text-[#343434] mb-12 font-thin'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</p>
+                        <h3 className='text-6xl mb-4'>{model.title}</h3>
+                        <p className='text-lg text-[#343434] mb-12 font-thin'>{model.description}</p>
                         <h6 className="text-2xl mt-12 mb-4">Contact Information</h6>
-                        <p className='text-lg mb-4'><PhoneFilled className='mr-1' /> +97 888 8888</p>
-                        <p className='text-lg mb-4'><MailOutlined className='mr-1' /> info@traveller.com</p>
-                        <p className='text-lg mb-4'> <EnvironmentFilled className='mr-1' /> 732 Despard St, Atlanta</p>
+                        <p className='text-lg mb-4'><PhoneFilled className='mr-1' />{model.phoneNumber}</p>
+                        <p className='text-lg mb-4'><MailOutlined className='mr-1' /> {model.email}</p>
+                        <p className='text-lg mb-4'> <EnvironmentFilled className='mr-1' /> {model.address}</p>
                     </div>
                 </Col>
             </Row>

@@ -14,7 +14,7 @@ export default function Hero({ title, subTitle, popularPlaces = [], className, t
 	return (
 		<div className={cx(['component', className, 'bg-stone-800'])}>
 			<Container>
-				<h1 className={`lg:text-[90px] text-5xl lg:leading-[110px] text-${textAlign} text-white max-w-xxl font-semibold`}> {title} </h1>
+				<h1 className={`lg:text-[90px] text-5xl lg:leading-[110px] text-${textAlign} text-white max-w-[614px] font-semibold`}> {title} </h1>
 				<p className={`max-w-md text-lg text-${textAlign} text-[#CFCFCF] my-12`}> {subTitle} </p>
 				<Form className='bg-white max-w-3xl lg:rounded-full rounded-md p-3 flex md:flex-nowrap flex-wrap'>
 					<Row gutter={[10, 10]} className='w-full'>

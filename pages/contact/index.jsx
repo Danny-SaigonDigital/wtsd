@@ -4,8 +4,11 @@ import { BlogHero } from '../../components/BlogHero';
 import { RightOutlined } from '@ant-design/icons';
 import ContactForm from '../../components/ContactForm/ContactForm';
 import SubcribeBlock from '../../components/SubcribeBlock/SubcribeBlock';
+import { gql, useQuery } from '@apollo/client';
 
 const Contact = () => {
+    const { data } = useQuery(Contact.query);
+    const { contactPageFields } = data?.page;
     return (
         <>
             <SEO title={'WTSD'} description={''} />
@@ -24,12 +27,24 @@ const Contact = () => {
                     ]}
                 />
                 <Container>
-                    <ContactForm />
+                    <ContactForm model={contactPageFields} />
                 </Container>
                 <SubcribeBlock title={'Subcribe to get special price'} subtitle={'Dont wanna miss something? subscribe right now and get special promotion and monthly newsletter'}/>
             </Main>
         </>
     );
 };
-
+Contact.query = gql`
+    query GetContactPageData {
+        page(id: "/contact", idType: URI) {
+            contactPageFields {
+                title
+                description
+                email
+                phoneNumber
+                address
+            }
+        }
+    } 
+`
 export default Contact;

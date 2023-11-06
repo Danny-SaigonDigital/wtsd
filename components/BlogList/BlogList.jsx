@@ -1,5 +1,6 @@
 import { Breadcrumb, Button, Col, Row } from 'antd';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 const BlogList = ({ posts }) => {
@@ -38,7 +39,9 @@ const BlogList = ({ posts }) => {
                             />
                             <h5 className='text-4xl mb-6'>{post.title}</h5>
                             <p className='text-lg text-[#343434] font-light mb-12'>{post.blogFields.blogDetail?.overview}</p>
-                            <Button type='primary' className='bg-black text-white rounded-full px-8 py-6 flex items-center text-2xl'>Read More</Button>
+                            <Link href={'/blog/' + post.id}>
+                                <a><Button type='primary' className='bg-black text-white rounded-full px-8 py-6 flex items-center text-2xl'>Read More</Button></a>
+                            </Link>
                         </div>
                     </div>
                 ))}
