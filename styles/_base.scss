@@ -70,9 +70,22 @@ img {
 		}
 	}
 }
+
 .ant-breadcrumb .anticon {
 	font-size: unset;
 }
 .ant-form-item .ant-form-item-label >label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
 	display: none;
+}
+.mask {
+	position: relative;
+	&::after {
+		content: '';
+		background: rgba(0, 0, 0, 0.6);
+		width: 100%;
+		height: 100%;
+		left: 0;
+		top: 0;
+		position: absolute;
+	}
 }

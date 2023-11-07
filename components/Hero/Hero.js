@@ -6,19 +6,22 @@ import { Container } from '../../components';
 import styles from './Hero.module.scss';
 let cx = className.bind(styles);
 
-export default function Hero({ title, subTitle, popularPlaces = [], className, textAlign = 'center' }) {
+export default function Hero({ title, description, popularPlaces = [], className, textAlign = 'center', backgroundImage }) {
 	const getLabel = (label) => {
 		return <span className='text-black'> {label} <DownOutlined className='ms-2 text-[10px]' /></span>
 	}
 
 	return (
-		<div className={cx(['component', className, 'bg-stone-800'])}>
-			<Container>
+		<div 
+			style={{ backgroundImage: `url(${backgroundImage})`}}
+		 	className={cx(['component', className, 'bg-stone-800 pt-[200px] bg-no-repeat bg-center mask'])}
+		>
+			<Container className={'relative z-10'}>
 				<h1 className={`lg:text-[90px] text-5xl lg:leading-[110px] text-${textAlign} text-white max-w-[614px] font-semibold`}> {title} </h1>
-				<p className={`max-w-md text-lg text-${textAlign} text-[#CFCFCF] my-12`}> {subTitle} </p>
+				<p className={`max-w-md text-lg text-${textAlign} text-[#CFCFCF] my-12`}> {description} </p>
 				<Form className='bg-white max-w-3xl lg:rounded-full rounded-md p-3 flex md:flex-nowrap flex-wrap'>
 					<Row gutter={[10, 10]} className='w-full'>
-						<Col lg={8} md={8} sm={24} xs={24}>
+						<Col lg={8} md={8} sm={8} xs={24}>
 							<Form.Item className='mb-0'>
 								<Select
 									className='w-min text-start'
@@ -33,7 +36,7 @@ export default function Hero({ title, subTitle, popularPlaces = [], className, t
 								/>
 							</Form.Item>
 						</Col>
-						<Col lg={8} md={8} sm={24} xs={24}>
+						<Col lg={8} md={8} sm={8} xs={24}>
 							<Form.Item className='mb-0'>
 								<DatePicker
 									className='antd-black-placeholder w-full'
@@ -43,7 +46,7 @@ export default function Hero({ title, subTitle, popularPlaces = [], className, t
 								/>
 							</Form.Item>
 						</Col>
-						<Col lg={8} md={8} sm={24} xs={24}>
+						<Col lg={8} md={8} sm={8} xs={24}>
 							<Form.Item className='mb-0'>
 								<Select
 									className='w-full text-start'

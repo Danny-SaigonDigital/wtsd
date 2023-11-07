@@ -27,12 +27,12 @@ const ContactForm = ({ model }) => {
                 </Col>
                 <Col lg={16} md={24} sm={24} xs={24}>
                     <div className='lg:px-12 py-8 px-4'>
-                        <h3 className='text-6xl mb-4'>{model.title}</h3>
-                        <p className='text-lg text-[#343434] mb-12 font-thin'>{model.description}</p>
+                        <h3 className='text-6xl mb-4'>{model?.title}</h3>
+                        <p className='text-lg text-[#343434] mb-12 font-thin'>{model?.description}</p>
                         <h6 className="text-2xl mt-12 mb-4">Contact Information</h6>
-                        <p className='text-lg mb-4'><PhoneFilled className='mr-1' />{model.phoneNumber}</p>
-                        <p className='text-lg mb-4'><MailOutlined className='mr-1' /> {model.email}</p>
-                        <p className='text-lg mb-4'> <EnvironmentFilled className='mr-1' /> {model.address}</p>
+                        <p className='text-lg mb-4'><PhoneFilled className='mr-1' />{model?.phoneNumber}</p>
+                        <p className='text-lg mb-4'><MailOutlined className='mr-1' /> {model?.email}</p>
+                        <p className='text-lg mb-4'> <EnvironmentFilled className='mr-1' /> {model?.address}</p>
                     </div>
                 </Col>
             </Row>

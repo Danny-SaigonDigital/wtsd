@@ -8,7 +8,7 @@ import { gql, useQuery } from '@apollo/client';
 
 const Contact = () => {
     const { data } = useQuery(Contact.query);
-    const { contactPageFields } = data?.page;
+    const contactPageFields = data?.page?.contactPageFields;
     return (
         <>
             <SEO title={'WTSD'} description={''} />

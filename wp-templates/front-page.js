@@ -26,8 +26,9 @@ export default function Component() {
 				<Hero
 					title={hero.title}
 					textAlign={'start'}
-					subTitle={hero.subTitle}
+					description={hero.description}
 					popularPlaces={popularPlaces}
+					backgroundImage={hero.backgroundImage?.sourceUrl}
 				/> 
 				<LocationSlides model={locationBlock} />
 				<ServiceBlock model={serviceBlock} />
@@ -51,6 +52,9 @@ Component.query = gql`
 		  hero {
 			description
 			title
+			backgroundImage {
+				sourceUrl
+			}
 		  }
 		  locationBlock {
 			title
@@ -71,6 +75,9 @@ Component.query = gql`
 		  serviceBlock {
 			subtitle
 			title
+			backgroundImage {
+          		sourceUrl
+        	}
 			services {
 				description
 				name

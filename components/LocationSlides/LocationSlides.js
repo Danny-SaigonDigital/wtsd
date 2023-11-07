@@ -1,21 +1,37 @@
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import classNames from 'classnames/bind';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import styles from './LocationSlides.module.scss';
+import icon from '../../assets/icons/i.png';
 
 const LocationSlides = ({ model }) => {
     const swiperRef = useRef();
     let cx = classNames.bind(styles);
 
     const prevAction = () => {
-		swiperRef.current?.slidePrev();
-	};
+        swiperRef.current?.slidePrev();
+        setActiveIndex((i) => {
+            console.log(i)
+            if (i <= 0) {
+                return model?.locations?.length - 1
+            }
+            return i - 1;
+        });
+    };
 
-	const nextAction = () => {
-		swiperRef.current?.slideNext();
-	}
+    const nextAction = (max) => {
+        swiperRef.current?.slideNext();
+        setActiveIndex((i) => {
+            console.log(i)
+            if (i >= model?.locations?.length - 1) {
+                return 0
+            }
+            return i + 1;
+        });
+    }
+    const [activeIndex, setActiveIndex] = useState(1);
 
     return (
         <div className='lg:px-[60px] py-[100px] px-[20px]'>
@@ -36,11 +52,10 @@ const LocationSlides = ({ model }) => {
                 slidesPerView={1}
                 spaceBetween={10}
                 className={cx(['p-[15px]'])}
-                loop={model.locations.length > 3}
-                centeredSlides={model.locations.length > 3}
+                loop={true}
+                centeredSlides={false}
                 onBeforeInit={(swiper) => {
                     swiperRef.current = swiper
-                    // swiperRef.current.on('slideChange', (s) => {console.log(s)})
                 }}
                 breakpoints={{
                     '@0.00': {
@@ -65,9 +80,16 @@ const LocationSlides = ({ model }) => {
                     <SwiperSlide key={'location-' + index} className={'overflow-hidden shadow-lg rounded-lg location-slide'}>
                         <div className='bg-white'>
                             {location.thumbnail?.sourceUrl && <img src={location.thumbnail?.sourceUrl} alt='' />}
-                            <div className='p-4 slide-body'>
-                                <h6 className={cx(['font-semibold lg:text-2xl text-lg mb-2'])}>{location.name}, {location.country}</h6>
-                                <p className='text-sm'>{location.description} {index}</p>
+                            <div className='p-4 slide-body relative py-8'>
+                                <h6 className={cx(['font-semibold lg:text-2xl text-lg'])}>{location.name}, {location.country}</h6>
+                                {activeIndex === index && (
+                                    <>
+                                        <p className='text-sm mt-2'>{location.description}</p>
+                                        <div className='rounded-full w-[80px] h-[80px] flex justify-center items-center shadow-lg absolute right-10 -top-10 bg-white'>
+                                            <img alt='"' src={icon.src} />
+                                        </div>
+                                    </>
+                                )}
                             </div>
                         </div>
                     </SwiperSlide>
