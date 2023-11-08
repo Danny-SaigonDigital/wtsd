@@ -1,24 +1,45 @@
 import { DownOutlined } from '@ant-design/icons';
 import { Button, Col, DatePicker, Form, Row, Select } from 'antd';
 import className from 'classnames/bind';
-import React from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import { Container } from '../../components';
 import styles from './Hero.module.scss';
+import { gsap } from 'gsap';
 let cx = className.bind(styles);
 
 export default function Hero({ title, description, popularPlaces = [], className, textAlign = 'center', backgroundImage }) {
 	const getLabel = (label) => {
 		return <span className='text-black'> {label} <DownOutlined className='ms-2 text-[10px]' /></span>
 	}
+	const titleRef = useRef();
+	const descriptionRef = useRef();
 
+	useLayoutEffect(() => {
+		const ctx = gsap.context(() => {
+			gsap.fromTo(titleRef.current, {
+				y: 300
+			}, {
+				y: 0,
+				duration: 0.5,
+			})
+			gsap.fromTo(descriptionRef.current, {
+				y: 300
+			}, {
+				y: 0,
+				duration: 0.5,
+				delay: 0.5
+			})
+		})
+		return () => ctx.revert();
+	}, []);
 	return (
-		<div 
+		<div
 			style={{ backgroundImage: `url(${backgroundImage})`}}
 		 	className={cx(['component', className, 'bg-stone-800 pt-[200px] bg-no-repeat bg-center mask'])}
 		>
 			<Container className={'relative z-10'}>
-				<h1 className={`lg:text-[90px] text-5xl lg:leading-[110px] text-${textAlign} text-white max-w-[614px] font-semibold`}> {title} </h1>
-				<p className={`max-w-md text-lg text-${textAlign} text-[#CFCFCF] my-12`}> {description} </p>
+				<h1 ref={titleRef} className={`lg:text-[90px] text-5xl lg:leading-[110px] text-${textAlign} text-white max-w-[614px] font-semibold`}> {title} </h1>
+				<p ref={descriptionRef} className={`max-w-md text-lg text-${textAlign} text-[#CFCFCF] my-12`}> {description} </p>
 				<Form className='bg-white max-w-3xl lg:rounded-full rounded-md p-3 flex md:flex-nowrap flex-wrap'>
 					<Row gutter={[10, 10]} className='w-full'>
 						<Col lg={8} md={8} sm={8} xs={24}>

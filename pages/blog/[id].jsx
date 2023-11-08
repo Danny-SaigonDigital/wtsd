@@ -16,8 +16,9 @@ const BlogDetail = () => {
     }
     const router = useRouter();
     const { id } = router.query;
-    const { data } = useQuery(BlogDetail.query, { variables: { id }});
+    const { data } = useQuery(BlogDetail.query, { variables: { id } });
     const content = data?.post.content;
+    const categories = data?.categories?.nodes ?? [];
 
     return (
         <>
@@ -51,9 +52,9 @@ const BlogDetail = () => {
                     <Row gutter={[40, 40]}>
                         <Col lg={16} md={24} sm={24} xs={24}>
                             <div className='font-thin text-lg' dangerouslySetInnerHTML={{ __html: content }} />
-                            <div className="flex justify-between mt-12">
-                                <p className='text-lg text-[#343434]'><span className='font-thin'>Tags: </span> Destination, Travel </p>
-                                <div className="flex">
+                            <div className="flex flex-wrap justify-between mt-12">
+                                <p className='text-lg text-[#343434] sm:mb-0 mb-4'><span className='font-thin'>Tags: </span> Destination, Travel </p>
+                                <div className="flex items-center sm:mb-0 mb-4">
                                     <p className="text-lg font-thin text-[#343434]">Share this: </p>
                                     <Space size={'middle'} className="flex ml-4 items-center">
                                         <FacebookFilled className='text-2xl' />
@@ -151,26 +152,13 @@ const BlogDetail = () => {
                             <div className="bg-white shadow-lg my-12 p-4">
                                 <h6 className="text-3xl mb-6">Categories</h6>
                                 <List itemLayout='horizontal'>
-                                    <List.Item>
-                                        <div className="flex">
-                                            <ArrowRightOutlined className='mr-4' /> <p className='text-lg'>Travel</p>
-                                        </div>
-                                    </List.Item>
-                                    <List.Item>
-                                        <div className="flex">
-                                            <ArrowRightOutlined className='mr-4' /> <p className='text-lg'>Tips</p>
-                                        </div>
-                                    </List.Item>
-                                    <List.Item>
-                                        <div className="flex">
-                                            <ArrowRightOutlined className='mr-4' /> <p className='text-lg'>Stories</p>
-                                        </div>
-                                    </List.Item>
-                                    <List.Item>
-                                        <div className="flex">
-                                            <ArrowRightOutlined className='mr-4' /> <p className='text-lg'>Destination</p>
-                                        </div>
-                                    </List.Item>
+                                    {categories.map(c => (
+                                        <List.Item key={c.id}>
+                                            <div className="flex">
+                                                <ArrowRightOutlined className='mr-4' /> <p className='text-lg'>{c.name}</p>
+                                            </div>
+                                        </List.Item>
+                                    ))}
                                 </List>
                             </div>
                             <div className="bg-stone-700 shadow-lg my-12 p-8 rounded-lg">
@@ -190,8 +178,14 @@ const BlogDetail = () => {
 
 BlogDetail.query = gql`
     query getPost($id: ID!) {
-        post(id: $id) {
-        content
+            post(id: $id) {
+            content
+        }
+        categories {
+            nodes {
+                name
+                id
+            }
         }
     }
 `;

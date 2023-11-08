@@ -42,7 +42,6 @@ const Services = ({ model }) => {
                     spaceBetween={10}
                     className={cx(['md:p-[15px] px-[5px] z-40'])}
                     loop={model.services.length > 3}
-                    centeredSlides={model.services.length > 3}
                     onBeforeInit={(swiper) => {
                         swiperRef.current = swiper
                     }}

@@ -21,10 +21,10 @@ const LocationSlides = ({ model }) => {
         });
     };
 
-    const nextAction = (max) => {
+    const nextAction = () => {
         swiperRef.current?.slideNext();
+        console.log('a')
         setActiveIndex((i) => {
-            console.log(i)
             if (i >= model?.locations?.length - 1) {
                 return 0
             }
@@ -84,7 +84,7 @@ const LocationSlides = ({ model }) => {
                                 <h6 className={cx(['font-semibold lg:text-2xl text-lg'])}>{location.name}, {location.country}</h6>
                                 {activeIndex === index && (
                                     <>
-                                        <p className='text-sm mt-2'>{location.description}</p>
+                                        <p className='text-sm mt-2'>{location.description} {index} </p>
                                         <div className='rounded-full w-[80px] h-[80px] flex justify-center items-center shadow-lg absolute right-10 -top-10 bg-white'>
                                             <img alt='"' src={icon.src} />
                                         </div>
