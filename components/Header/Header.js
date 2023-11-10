@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { BarsOutlined } from '@ant-design/icons';
 import classNames from 'classnames/bind';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import logo from '../../assets/images/Logo.png';
 import { Container, NavigationMenu, SkipNavigationLink } from '../../components';
 import styles from './Header.module.scss';
-import logo from '../../assets/images/Logo.png';
-import { BarsOutlined } from '@ant-design/icons'
 let cx = classNames.bind(styles);
 
 export default function Header({
@@ -14,7 +14,7 @@ export default function Header({
 	const [hasBackground, setHasBackground] = useState(false);
 	useEffect(() => {
 		window.addEventListener('scroll', () => {
-			setHasBackground(window.scrollY > 400);
+			setHasBackground(window.scrollY > 10);
 		});
 	}, []);
 	return (

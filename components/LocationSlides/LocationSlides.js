@@ -34,8 +34,8 @@ const LocationSlides = ({ model }) => {
     const [activeIndex, setActiveIndex] = useState(1);
 
     return (
-        <div className='lg:px-[60px] py-[100px] px-[20px]'>
-            <h2 className='font-semibold max-w-3xl lg:text-6xl text-4xl text-center m-auto mb-8'> {model.title} </h2>
+        <div className='lg:px-[60px] py-[178px] px-[20px] main-container'>
+            <h2 className='font-semibold max-w-3xl lg:text-6xl text-4xl text-center m-auto mb-[29px] leading-[70px] text-[#020202]'> {model.title} </h2>
             <p className='text-center m-auto text-[#878787] text-lg'>{model.subtitle}</p>
             <div className='w-full flex justify-between mb-5'>
                 <Button
@@ -64,23 +64,23 @@ const LocationSlides = ({ model }) => {
                     },
                     '@0.75': {
                         slidesPerView: 2,
-                        spaceBetween: 20,
+                        spaceBetween: 21,
                     },
                     '@1.00': {
                         slidesPerView: 2,
-                        spaceBetween: 20,
+                        spaceBetween: 21,
                     },
                     '@1.50': {
                         slidesPerView: 3,
-                        spaceBetween: 20,
+                        spaceBetween: 21,
                     }
                 }}
             >
                 {model.locations.map((location, index) => (
-                    <SwiperSlide key={'location-' + index} className={'overflow-hidden shadow-lg rounded-lg location-slide'}>
+                    <SwiperSlide key={'location-' + index} className={'overflow-hidden shadow-lg rounded-[10px] location-slide'}>
                         <div className='bg-white'>
                             {location.thumbnail?.sourceUrl && <img src={location.thumbnail?.sourceUrl} alt='' />}
-                            <div className='p-4 slide-body relative py-8'>
+                            <div className='p-[14px] slide-body relative py-[35px]'>
                                 <h6 className={cx(['font-semibold lg:text-2xl text-lg'])}>{location.name}, {location.country}</h6>
                                 {activeIndex === index && (
                                     <>

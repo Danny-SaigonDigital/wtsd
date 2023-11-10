@@ -28,9 +28,21 @@ export default function NavigationMenu({ menuItems, className }) {
           }
 
           return (
-            <li key={id} className={cxFromWp(cssClasses)}>
+            <li key={id} className={'text-lg text-white'}>
               <Link className='text-white' href={path ?? ''}>{label ?? ''}</Link>
-              {children.length ? renderMenu(children) : null}
+              {children.length ? (
+                <ul className={cx('menu')}>
+                  {children.map(l => {
+                    const { id, path, label, cssClasses } = l;
+                    if (!l.hasOwnProperty('__typename')) {
+                      return null;
+                    } return (
+                      <li key={id} className={'text-lg text-black'}>
+              			<Link href={path ?? ''}>{label ?? ''}</Link>
+                      </li>)
+                  })}
+                </ul>
+              ) : null}
             </li>
           );
         })}

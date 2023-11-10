@@ -1,10 +1,10 @@
 import React from 'react';
-import { Container, Main, SEO } from '../../components';
-import { BlogHero } from '../../components/BlogHero';
+import { Container, Main, SEO } from '../components';
 import { RightOutlined } from '@ant-design/icons';
-import ContactForm from '../../components/ContactForm/ContactForm';
-import SubcribeBlock from '../../components/SubcribeBlock/SubcribeBlock';
+import SubcribeBlock from '../components/SubcribeBlock/SubcribeBlock';
 import { gql, useQuery } from '@apollo/client';
+import { BlogHero } from '../components/BlogHero';
+import { ContactForm } from '../components/ContactForm';
 
 const Contact = () => {
     const { data } = useQuery(Contact.query);

@@ -60,7 +60,7 @@ img {
 	background-color: var(--wpe--color--accent);
 }
 .app-shadow {
-	box-shadow: 1px 3px 6px 6px #eee;
+	box-shadow: 0px 8px 60px 0px rgba(0, 0, 0, 0.15);
 }
 
 .antd-black-placeholder {
@@ -88,4 +88,9 @@ img {
 		top: 0;
 		position: absolute;
 	}
+}
+.main-container {
+	width: 100%;
+	max-width: 1512px;
+	margin-inline: auto;
 }

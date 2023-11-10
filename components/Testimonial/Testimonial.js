@@ -16,7 +16,7 @@ const Testimonial = ({ model }) => {
     }
 
     return (
-        <div className='lg:px-[60px] px-[20px] py-[100px]'>
+        <div className='lg:px-[60px] px-[20px] py-[100px] main-container'>
             <h5 className=' uppercase tracking-widest lg:text-[30px] text-2xl'>Testimonial</h5>
             <h2 className='font-semibold max-w-3xl lg:text-6xl text-4xl mb-8'>{model.title}</h2>
             <p className='text-[#878787] lg:text-lg text-md max-w-2xl mb-8'>{model.subtitle}</p>

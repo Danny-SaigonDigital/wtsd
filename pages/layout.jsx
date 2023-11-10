@@ -4,20 +4,20 @@ import { BlogInfoFragment } from '../fragments/GeneralSettings';
 import { Footer, Header, NavigationMenu } from '../components';
 import * as MENUS from '../constants/menus';
 
-const Layout = ({children}) => {
-    const { data } = useQuery(Layout.query, {
-        variables: Layout.variables(),
-      });
+const Layout = ({ children }) => {
+	const { data } = useQuery(Layout.query, {
+		variables: Layout.variables(),
+	});
 
-      const menuItems = data?.headerMenuItems?.nodes ?? [];
-      const footerMenu = data?.footerMenuItems?.nodes ?? [];
-    return (
-        <>
-            <Header menuItems={menuItems} />
-                {children}
-            <Footer title={'WTSD'} menuItems={footerMenu} />
-        </>
-    );
+	const menuItems = data?.headerMenuItems?.nodes ?? [];
+	const footerMenu = data?.footerMenuItems?.nodes ?? [];
+	return (
+		<>
+			<Header menuItems={menuItems} />
+			{children}
+			<Footer title={'WTSD'} menuItems={footerMenu} />
+		</>
+	);
 };
 Layout.query = gql`
   ${BlogInfoFragment}
@@ -43,9 +43,9 @@ Layout.query = gql`
 `;
 
 Layout.variables = () => {
-  return {
-    headerLocationa: MENUS.PRIMARY_LOCATION,
-    footerLocation: MENUS.FOOTER_LOCATION,
-  };
+	return {
+		headerLocationa: MENUS.PRIMARY_LOCATION,
+		footerLocation: MENUS.FOOTER_LOCATION,
+	};
 };
 export default Layout;

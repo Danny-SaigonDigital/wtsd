@@ -7,9 +7,9 @@ let cx = classNames.bind(styles);
 
 const BlogHero = ({ breadcrumbItems = [], separator, title = '' }) => {
     return (
-        <div className={cx(['container', 'bg-stone-800'])}>
+        <div className={'bg-stone-800 py-[357px]'}>
             <div className='flex flex-col justify-center items-center '>
-                <h2 className='lg:text-[64px] text-5xl text-white font-bold mb-8 max-w-3xl'>{title}</h2>
+                <h2 className='lg:text-[64px] leadding-[70px] text-5xl text-white font-bold mb-10 max-w-3xl'>{title}</h2>
                 <Breadcrumb
                     separator={separator}
                     itemRender={(item) => {

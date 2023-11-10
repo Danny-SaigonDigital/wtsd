@@ -6,6 +6,7 @@ import { Container } from '../../components';
 import styles from './Hero.module.scss';
 import { gsap } from 'gsap';
 let cx = className.bind(styles);
+React.useLayoutEffect = React.useEffect 
 
 export default function Hero({ title, description, popularPlaces = [], className, textAlign = 'center', backgroundImage }) {
 	const getLabel = (label) => {
@@ -35,15 +36,23 @@ export default function Hero({ title, description, popularPlaces = [], className
 	return (
 		<div
 			style={{ backgroundImage: `url(${backgroundImage})`}}
-		 	className={cx(['component', className, 'bg-stone-800 pt-[200px] bg-no-repeat bg-center mask'])}
+		 	className={cx(['component', className, 'bg-stone-800 pt-[200px] bg-no-repeat bg-center mask bg-cover'])}
 		>
 			<Container className={'relative z-10'}>
-				<h1 ref={titleRef} className={`lg:text-[90px] text-5xl lg:leading-[110px] text-${textAlign} text-white max-w-[614px] font-semibold`}> {title} </h1>
-				<p ref={descriptionRef} className={`max-w-md text-lg text-${textAlign} text-[#CFCFCF] my-12`}> {description} </p>
-				<Form className='bg-white max-w-3xl lg:rounded-full rounded-md p-3 flex md:flex-nowrap flex-wrap'>
+				<h1 
+					ref={titleRef} 
+					className={`lg:text-[90px] text-5xl lg:leading-[110px] text-${textAlign} text-white max-w-[614px] font-bold`}> 
+						{title}
+				</h1>
+				<p 
+					ref={descriptionRef} 
+					className={`max-w-md text-lg text-${textAlign} text-[#CFCFCF] mt-9 mb-7 leading-9 font-medium`}> 
+					{description} 
+				</p>
+				<Form className='bg-white lg:rounded-full rounded-md pl-6 p-2 flex md:flex-nowrap flex-wrap max-w-[736px]'>
 					<Row gutter={[10, 10]} className='w-full'>
 						<Col lg={8} md={8} sm={8} xs={24}>
-							<Form.Item className='mb-0'>
+							<Form.Item className='mb-0 h-full flex items-center'>
 								<Select
 									className='w-min text-start'
 									bordered={false}
@@ -58,7 +67,7 @@ export default function Hero({ title, description, popularPlaces = [], className
 							</Form.Item>
 						</Col>
 						<Col lg={8} md={8} sm={8} xs={24}>
-							<Form.Item className='mb-0'>
+							<Form.Item className='mb-0 h-full flex items-center'>
 								<DatePicker
 									className='antd-black-placeholder w-full'
 									placeholder='Date'
@@ -68,7 +77,7 @@ export default function Hero({ title, description, popularPlaces = [], className
 							</Form.Item>
 						</Col>
 						<Col lg={8} md={8} sm={8} xs={24}>
-							<Form.Item className='mb-0'>
+							<Form.Item className='mb-0 h-full flex items-center'>
 								<Select
 									className='w-full text-start'
 									placeholder={getLabel('People')}
@@ -82,7 +91,7 @@ export default function Hero({ title, description, popularPlaces = [], className
 							</Form.Item>
 						</Col>
 					</Row>
-					<Button className='rounded-full bg-black md:mt-0 mt-4' type='primary'>
+					<Button className='rounded-full bg-black md:mt-0 mt-4 px-8 py-3 h-full border-none shadow-none' type='primary'>
 						Explore now
 					</Button>
 				</Form>

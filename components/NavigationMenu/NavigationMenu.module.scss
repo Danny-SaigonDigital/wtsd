@@ -25,7 +25,7 @@
 	padding: 0;
 	margin: 0;
 	position: relative;
-	gap: 0.5rem;
+	// gap: 0.5rem;
 
 	li {
 		display: flex;
@@ -33,7 +33,6 @@
 		position: relative;
 		width: 100%;
 		flex-direction: column;
-
 		@media (min-width: $breakpoint-small) {
 			width: auto;
 			flex-direction: row;
@@ -47,7 +46,6 @@
 	}
 
 	a {
-		color: var(--wpe--navigation-menu--color);
 		padding: 0.5rem;
 		display: block;
 		transition: all 0.2s ease-out;

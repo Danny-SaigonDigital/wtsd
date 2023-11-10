@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BlogHero } from '../../components/BlogHero';
 import { Container, SEO } from '../../components';
 import { UserOutlined, CalendarOutlined, FolderOpenOutlined, ArrowRightOutlined, FacebookFilled, TwitterCircleFilled, LinkedinFilled, PhoneFilled, MailOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Col, Divider, Form, Image, Input, List, Row, Space } from 'antd';
+import { Button, Checkbox, Col, Divider, Form, Input, List, Row, Space } from 'antd';
 import { blogs } from '../../mock/blogs';
 import SubcribeBlock from '../../components/SubcribeBlock/SubcribeBlock';
 import { gql, useQuery } from '@apollo/client';
