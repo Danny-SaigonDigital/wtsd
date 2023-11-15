@@ -16,7 +16,7 @@ export default function Component() {
 	const { data } = useQuery(Component.query);
 	const { title: siteTitle, description: siteDescription } =
 		data?.generalSettings;
-	const  { hero, locationBlock, serviceBlock, partnerBlock, testimonialBlock } = data?.page?.acfFields
+	const { hero, locationBlock, serviceBlock, partnerBlock, testimonialBlock } = data?.page?.acfFields
 	const popularPlaces = ['HCM City', 'Da Lat', 'Da Nang'];
 
 	return (
@@ -29,7 +29,7 @@ export default function Component() {
 					description={hero.description}
 					popularPlaces={popularPlaces}
 					backgroundImage={hero.backgroundImage?.sourceUrl}
-				/> 
+				/>
 				<LocationSlides model={locationBlock} />
 				<ServiceBlock model={serviceBlock} />
 				<PartnerBlock model={partnerBlock} />

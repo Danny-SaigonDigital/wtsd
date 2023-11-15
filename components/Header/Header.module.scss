@@ -36,23 +36,20 @@
 .nav-toggle {
 	align-items: center;
 	background-color: transparent;
-	border: 0.1rem solid var(--wpe--color--white);
 	color: var(--wpe--color--black);
 	cursor: pointer;
 	display: flex;
 	margin: 0;
-	padding: 0.5rem 1rem;
 	transition: all 0.2s ease-in;
 	user-select: none;
-	font-size: 2rem;
-
+	font-size: 18px;
+	margin-left: 30px;
 	&:hover,
 	&:focus {
-		background-color: var(--wpe--color--black);
 		color: var(--wpe--color--black);
 	}
 
-	@media (min-width: $breakpoint-small) {
+	@media (min-width: $breakpoint-medium) {
 		display: none !important;
 	}
 }
@@ -63,11 +60,20 @@
 
 	&.show {
 		display: block;
+		background-color: black;
+		position: absolute;
+		left: 0;
+		top: 142px;
+		ul {
+			flex-direction: column;
+			padding-bottom: 30px;
+		}
+
 	}
 
-	@media (min-width: $breakpoint-small) {
+	@media (min-width: $breakpoint-medium) {
 		display: block;
 		width: auto;
-		background-color: black;
+
 	}
 }

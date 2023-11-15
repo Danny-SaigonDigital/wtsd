@@ -58,7 +58,7 @@ export default function Footer({ title, menuItems }) {
 				</Row>
 			</Container>
 			<div className='bg-black text-white text-center py-8'>
-				<p className={cx('copyright ')}>{`${title} © ${year}. Powered by WordPress.`}</p>
+				<p className={cx('copyright ')}>Copyright © 2023 Danny Saigon Digital</p>
 			</div>
 		</footer>
 	);

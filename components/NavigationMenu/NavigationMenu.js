@@ -28,8 +28,8 @@ export default function NavigationMenu({ menuItems, className }) {
           }
 
           return (
-            <li key={id} className={'text-lg text-white'}>
-              <Link className='text-white' href={path ?? ''}>{label ?? ''}</Link>
+            <li key={id} className={'text-lg text-white xl:mr-[67px] lg:mr-[20px]'}>
+              <Link className='text-white text-lg font-semibold' href={path ?? ''}>{label ?? ''}</Link>
               {children.length ? (
                 <ul className={cx('menu')}>
                   {children.map(l => {

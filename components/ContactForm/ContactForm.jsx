@@ -1,29 +1,23 @@
 import { EnvironmentFilled, MailOutlined, PhoneFilled } from '@ant-design/icons';
 import { Button, Col, Form, Input, Row } from 'antd';
 import React from 'react';
+import HubspotForm from 'react-hubspot-form';
 
 const ContactForm = ({ model }) => {
+
     return (
-        <div className='lg:px-[60px] py-[100px] px-[20px]'>
+        <div className='lg:px-[60px] py-[100px] px-[20px] main-container'>
             <Row gutter={[20, 20]}>
                 <Col lg={8} md={24} sm={24} xs={24}>
-                    <Form className='lg:px-8 px-4 py-12 rounded-md app-shadow'>
-                        <Form.Item name={'name'}>
-                            <Input className='rounded-md' placeholder='Your name' size='large' />
-                        </Form.Item>
-                        <Form.Item name={'email'}>
-                            <Input className='rounded-md' placeholder='Your Email' size='large' />
-                        </Form.Item>
-                        <Form.Item name={'subject'}>
-                            <Input className='rounded-md' placeholder='Subject' size='large' />
-                        </Form.Item>
-                        <Form.Item name={'message'}>
-                            <Input.TextArea className='rounded-md' placeholder='Your Message' rows={4} />
-                        </Form.Item>
-                        <Form.Item>
-                            <Button type='primary' className='bg-black text-white rounded-full px-8 py-6 flex items-center justify-center text-2xl w-full mt-6'>Send Message</Button>
-                        </Form.Item>
-                    </Form>
+                    <div className='w-full bg-white app-shadow lg:px-[41px] py-[74px] px-4 rounded-[10px]'>
+                        <HubspotForm
+                            portalId='44361458'
+                            formId='dec9484c-544d-4cb5-99ba-fda5c6e8e4b3'
+                            onReady={(form) => console.log('Form ready!')}
+                            onSubmit={() => console.log('okokoko')}
+                            loading={<p>Loading...</p>}
+                        />
+                    </div>
                 </Col>
                 <Col lg={16} md={24} sm={24} xs={24}>
                     <div className='lg:px-12 py-8 px-4'>

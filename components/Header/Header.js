@@ -1,4 +1,4 @@
-import { BarsOutlined } from '@ant-design/icons';
+import { BarsOutlined, SearchOutlined } from '@ant-design/icons';
 import classNames from 'classnames/bind';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -18,7 +18,7 @@ export default function Header({
 		});
 	}, []);
 	return (
-		<header className={'component fixed top-0 left-0 z-50 w-full transition-all ' + (hasBackground ? 'bg-black' : '')}>
+		<header className={'component fixed top-0 left-0 z-50 w-full  ' + (hasBackground || isNavShown ? 'bg-black' : '')}>
 			<SkipNavigationLink />
 			<Container>
 				<div className={cx('navbar')}>
@@ -27,20 +27,24 @@ export default function Header({
 							<img className='cursor-pointer' alt='Logo' src={logo.src} />
 						</a>
 					</Link>
-					<button
-						type="button"
-						className={cx('nav-toggle')}
-						onClick={() => setIsNavShown(!isNavShown)}
-						aria-label="Toggle navigation"
-						aria-controls={cx('primary-navigation')}
-						aria-expanded={isNavShown}
-					>
-						<BarsOutlined className='text-white text-4xl' />
-					</button>
-					<NavigationMenu
-						className={cx(['primary-navigation', isNavShown ? 'show' : undefined])}
-						menuItems={menuItems}
-					/>
+
+					<div className='flex items-center'>
+						<NavigationMenu
+							className={cx(['primary-navigation', isNavShown ? 'show' : undefined])}
+							menuItems={menuItems}
+						/>
+						<SearchOutlined className='text-2xl text-white' />
+						<button
+							type="button"
+							className={cx('nav-toggle')}
+							onClick={() => setIsNavShown(!isNavShown)}
+							aria-label="Toggle navigation"
+							aria-controls={cx('primary-navigation')}
+							aria-expanded={isNavShown}
+						>
+							<BarsOutlined className='text-white text-4xl' />
+						</button>
+					</div>
 				</div>
 			</Container>
 		</header>
